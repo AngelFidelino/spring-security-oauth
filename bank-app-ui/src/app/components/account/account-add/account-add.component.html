@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-7">
+              <h2 class="heading-21921">Account Information</h2>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="d-grid contact-view">
+                <div class="map-content-9">
+                <span class="text-success" *ngIf="accountAddForm.submitted && model.accountNumber">Your data was submitted. Reference ID is {{model.accountNumber}}</span>
+                <form (ngSubmit)="accountAddForm.valid && save(accountAddForm)" #accountAddForm="ngForm">
+                    <div class="twice">
+                        <input type="text" class="form-control" name="customerId" id="customerId" placeholder="Customer Id" required
+                            [(ngModel)]="model.customerId" #customerId="ngModel">
+                        <span class="text-danger" *ngIf="(customerId.touched || accountAddForm.submitted) &&
+                        customerId.errors?.['required']">Error : Name is required !</span>
+                    </div>
+                    <div class="twice">
+                        <input type="text" class="form-control" name="accountType" id="accountType" placeholder="accountType" required
+                            [(ngModel)]="model.accountType" #accountType="ngModel">
+                        <span class="text-danger" *ngIf="(accountType.touched || accountAddForm.submitted) &&
+                        accountType.errors?.['required']">Error : accountType is required !</span>
+                    </div>
+                    <div class="twice">
+                        <input type="text" class="form-control" name="branchAddress" id="branchAddress" placeholder="branchAddress" required
+                            [(ngModel)]="model.branchAddress" #branchAddress="ngModel">
+                        <span class="text-danger" *ngIf="(branchAddress.touched || accountAddForm.submitted) &&
+                        branchAddress.errors?.['required']">Error : branchAddress is required !</span>
+                    </div>
+                    <button type="submit" class="btn btn-contact">Send Message</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
