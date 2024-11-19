@@ -19,14 +19,15 @@ public class CustomerController {
     private CustomerRepository customerRepository;
     private PasswordEncoder passwordEncoder;
 
-    public CustomerController(CustomerRepository customerRepository,PasswordEncoder passwordEncoder) {
+    public CustomerController(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping
     public Customer addCustomer(@RequestBody Customer customer) {
-        customer.setPwd(passwordEncoder.encode(customer.getPwd()));
+        if (customer.getPwd() != null)
+            customer.setPwd(passwordEncoder.encode(customer.getPwd()));
         return customerRepository.save(customer);
     }
 
